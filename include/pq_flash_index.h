@@ -101,16 +101,6 @@ namespace diskann {
     DISKANN_DLLEXPORT void cache_bfs_levels(_u64 num_nodes_to_cache,
                                             std::vector<uint32_t> &node_list);
 
-    //    DISKANN_DLLEXPORT void cache_from_samples(const std::string
-    //    sample_file, _u64 num_nodes_to_cache, std::vector<uint32_t>
-    //    &node_list);
-
-    //    DISKANN_DLLEXPORT void save_cached_nodes(_u64        num_nodes,
-    //                                             std::string cache_file_path);
-
-    // setting up thread-specific data
-
-    // implemented
     DISKANN_DLLEXPORT void cached_beam_search(
         const T *query, const _u64 k_search, const _u64 l_search, _u64 *res_ids,
         float *res_dists, const _u64 beam_width, QueryStats *stats = nullptr);
@@ -119,6 +109,8 @@ namespace diskann {
                                            const _u64 l_search, _u64* indices, float* distances,
                                            const _u64  beam_width,
                                            QueryStats *stats = nullptr);
+
+    DISKANN_DLLEXPORT Metric get_metric();
 
     std::shared_ptr<AlignedFileReader> &reader;
    protected:

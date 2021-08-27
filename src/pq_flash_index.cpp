@@ -837,7 +837,7 @@ namespace diskann {
       data = this->thread_data.pop();
     }
 
-//std::cout<<l_search<<" ";
+    // std::cout<<l_search<<" ";
     // copy query to thread specific aligned and allocated memory (for distance
     // calculations we need aligned data)
 
@@ -1092,7 +1092,7 @@ namespace diskann {
         unsigned *node_buf = OFFSET_TO_NODE_NHOOD(node_disk_buf);
         _u64      nnbrs = (_u64)(*node_buf);
         T *       node_fp_coords = OFFSET_TO_NODE_COORDS(node_disk_buf);
-//        assert(data_buf_idx < MAX_N_CMPS);
+        //        assert(data_buf_idx < MAX_N_CMPS);
         if (data_buf_idx == MAX_N_CMPS)
           data_buf_idx = 0;
 
@@ -1210,28 +1210,33 @@ namespace diskann {
     }
   }
 
-// range search returns results of all neighbors within distance of range. indices and distances need to be pre-allocated of size l_search
+// range search returns results of all neighbors within distance of range. 
+// Indices and distances need to be pre-allocated of size l_search
 // and the return value is the number of matching hits.
-
-    template<typename T>
+  
+  template<typename T>
   _u32 PQFlashIndex<T>::range_search(const T *query1, const double range,
-                                           const _u64 l_search, _u64* indices, float* distances,
-                                           const _u64  beam_width,
-                                           QueryStats *stats) {
-_u32 res_count = 0;
-this->cached_beam_search(query1, l_search, l_search, indices, distances, beam_width, stats);
-for (_u32 i = 0; i < l_search; i++) {
-  //std::cout<<distances[i]<<" ";
-  if (distances[i] > (float) range) {
-    res_count = i;
-    break;
-  } else if (i == l_search -1)
-  res_count = l_search;
-}
-//std::cout<<"\n\n"<<std::endl;
-//std::cout<<res_count<< std::endl;
-  return res_count; 
-}
+                                     const _u64 l_search, _u64 *indices,
+                                     float *distances, const _u64 beam_width,
+                                     QueryStats *stats) {
+    _u32 res_count = 0;
+    this->cached_beam_search(query1, l_search, l_search, indices, distances,
+                             beam_width, stats);
+    for (_u32 i = 0; i < l_search; i++) {
+      if (distances[i] > (float) range) {
+        res_count = i;
+        break;
+      } else if (i == l_search - 1)
+        res_count = l_search;
+    }
+
+    return res_count;
+  }
+
+  template<typename T>
+  Metric PQFlashIndex<T>::get_metric() {
+    return metric;
+  }
 
 #ifdef EXEC_ENV_OLS
   template<typename T>
