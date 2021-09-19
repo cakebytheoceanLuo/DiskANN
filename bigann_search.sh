@@ -1,10 +1,12 @@
 #!/bin/bash
 
+DATA_TYPE=uint8
+METRIC=l2
 # ================================================================================
 # ========================Begin Of Parameters=====================================
 # ================================================================================
-DATA_TYPE=uint8
-METRIC=l2
+# DATA_TYPE
+# METRIC
 INDEX_PREFIX_PATH=/data/diskann-T2-baseline-indices/bigann-1B/R100_L100_B50_M80/R100_L100_B50_M80
 NUM_NODES_TO_CACHE=5000000
 NUM_THREAD=16
