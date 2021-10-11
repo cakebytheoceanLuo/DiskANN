@@ -1,19 +1,21 @@
 #!/bin/bash
 
+DATA_TYPE=float
+METRIC=mips
 # ================================================================================
 # ========================Begin Of Parameters=====================================
 # ================================================================================
-DATA_TYPE=float
-METRIC=mips
-INDEX_PREFIX_PATH=/data/diskann-T2-baseline-indices/text2image-1B/R100_L100_B60_M115_PQ200//R100_L100_B60_M115_PQ200
+# DATA_TYPE
+# METRIC
+INDEX_PREFIX_PATH=/data/diskann-T2-baseline-indices/text2image-1B/R100_L100_B60_M115_PQ200/R100_L100_B60_M115_PQ200
 NUM_NODES_TO_CACHE=500000
 NUM_THREAD=16
 BEAMWIDTH=10
 QUERY_FILE=/data/diskann-T2-baseline-indices/text2image-1B/query.public.100K.fbin
 TRUTH_SET_FILE=/data/diskann-T2-baseline-indices/text2image-1B/text2image-1B-gt
-RESULT_OUTPUT_PREFIX=/data/0918texttoimgae-answers/
+RESULT_OUTPUT_PREFIX=/data/1011texttoimgae-answers/
 
-LOG_FILE=/data/0918texttoimgae-search.log
+LOG_FILE=/data/1011texttoimgae-search.log
 # ================================================================================
 # ===========================End Of Parameters====================================
 # ================================================================================
